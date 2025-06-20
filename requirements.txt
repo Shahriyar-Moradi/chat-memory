@@ -1,0 +1,18 @@
+# Core API Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# AI and Embeddings
+openai==1.51.0
+pinecone-client>=5.0.0
+agents>=0.6.0
+
+# Database
+sqlalchemy==2.0.23
+
+# Utilities
+python-dotenv==1.0.0
+pydantic==2.5.0
+
+# For health checks in Docker
+requests==2.31.0 
