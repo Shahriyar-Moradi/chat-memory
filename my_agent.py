@@ -8,9 +8,6 @@ from agents import Agent, Runner, function_tool, ModelSettings
 from dotenv import load_dotenv
 from openai import OpenAI
 from pinecone import Pinecone,ServerlessSpec
-
-
-
 import logging
 
 load_dotenv()
