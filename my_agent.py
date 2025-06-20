@@ -25,7 +25,7 @@ PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 MEMORY_INDEX_NAME = os.getenv("MEMORY_INDEX_NAME", "chatbot-memory")
 
 if not OPENAI_API_KEY or not PINECONE_API_KEY:
-    raise ValueError("Missing required API keys. Please set OPENAI_API_KEY and PINECONE_API_KEY in your .env file")
+    raise ValueError("Missing required API keys. Please set OPENAI_API_KEY and PINECONE_API_KEY environment variables in your deployment platform")
 
 # Initialize clients
 openai_client = OpenAI(api_key=OPENAI_API_KEY)
