@@ -20,7 +20,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app
 
 # Copy .env file for testing (REMOVE FOR PRODUCTION!)
-COPY .env .
+COPY .env* ./
 
 # Make port 80 available to the world outside this container
 EXPOSE 8080
