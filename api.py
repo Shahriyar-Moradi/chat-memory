@@ -17,7 +17,7 @@ from sqlalchemy.orm import sessionmaker, Session
 from dotenv import load_dotenv
 
 # Import the Memory Agent functionality
-from .my_agent2 import process_query_with_memory, memory_service
+from my_agent import process_query_with_memory, memory_service
 
 # -----------------------------------
 # Environment and Configuration Setup

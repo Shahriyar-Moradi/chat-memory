@@ -7,11 +7,8 @@ from pydantic import BaseModel, Field
 from agents import Agent, Runner, function_tool, ModelSettings
 from dotenv import load_dotenv
 from openai import OpenAI
-from pinecone import Pinecone
-try:
-    from pinecone import ServerlessSpec
-except ImportError:
-    ServerlessSpec = None
+from pinecone import Pinecone,ServerlessSpec
+
 
 
 import logging
