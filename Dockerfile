@@ -1,40 +1,25 @@
-# Use Python 3.10 slim image for smaller size
 FROM python:3.10-slim
 
-# Set working directory
+# Set the working directory in the container
 WORKDIR /app
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-ENV PORT=8080
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
+# Install FFmpeg
+RUN apt-get update \
+    && apt-get install -y ffmpeg \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for better caching
-COPY requirements.txt .
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-# Install Python dependencies
-RUN pip install --no-cache-dir --upgrade pip
+# Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
-COPY . .
+# Make port 80 available to the world outside this container
+EXPOSE 8080
 
-# Create non-root user for security
-RUN useradd --create-home --shell /bin/bash app
-RUN chown -R app:app /app
-USER app
+# Define environment variable
 
-# Expose the port that Cloud Run expects
-EXPOSE $PORT
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD python -c "import requests; requests.get('http://localhost:$PORT/health')"
-
-# Command to run the application
-CMD ["sh", "-c", "uvicorn api:app --host 0.0.0.0 --port $PORT"] 
+# Run app.py when the container launches
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8080"]
