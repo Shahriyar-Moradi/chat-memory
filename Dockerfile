@@ -17,10 +17,10 @@ RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY . .
+COPY . /app
 
-# Copy .env file for testing if it exists (REMOVE FOR PRODUCTION!)
-COPY .env* ./
+# Copy .env file for testing (REMOVE FOR PRODUCTION!)
+COPY .env .
 
 # Make port 80 available to the world outside this container
 EXPOSE 8080
